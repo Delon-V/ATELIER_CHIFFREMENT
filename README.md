@@ -38,8 +38,10 @@ python app/file_crypto.py decrypt secret.enc secret.dec.txt
 cat secret.dec.txt
 ```
 **Que se passe-t-il si on modifie un octet du fichier chiffré ?**  
- 
+ Toute modification du fichier chiffré est détectée grâce au mécanisme d’intégrité (HMAC/MAC), ce qui provoque une erreur et empêche le déchiffrement.
+
 **Pourquoi ne faut-il pas commiter la clé dans Git ?**   
+Il ne faut pas commiter la clé dans Git car elle permet de déchiffrer toutes les données ; si elle est exposée, la sécurité est totalement compromise.
 
 ## 5) Atelier 1 :
 Dans cet atelier, la clé Fernet n'est plus générée dans le code mais stockée dans un Repository Secret Github. Ecrivez un nouveau programme **python app/fernet_atelier1.py** qui utilisera une clé Fernet caché dans un Secret GitHub pour encoder et décoder vos fichiers.
